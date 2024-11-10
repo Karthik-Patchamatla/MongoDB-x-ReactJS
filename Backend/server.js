@@ -70,3 +70,21 @@ app.post("/api/register", async (req,res)=>{
         res.status(500).send({message: 'Failed to register user'});
     }
 });
+
+app.post("/api/login", async (req,res)=> {
+    try {
+        const {email,password} = req.body;
+        const user = await Register.findOne({email: email});
+        if(!user){
+            return res.status(400).send({message: 'invalid user'});
+        }
+
+        if(user.password != password){
+            return res.status(400).send({message: 'incorrect password'});
+        }
+
+        res.status(200).send({message: 'login succesful'});
+    } catch (error) {
+        console.log(error);
+    }
+})
