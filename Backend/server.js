@@ -49,6 +49,7 @@ const registerSchema = new mongoose.Schema({
 
 const Register = mongoose.model("Registers", registerSchema);
 
+// Register
 app.post("/api/register", async (req,res)=>{
     
     try {
@@ -71,6 +72,7 @@ app.post("/api/register", async (req,res)=>{
     }
 });
 
+// Login
 app.post("/api/login", async (req,res)=> {
     try {
         const {email,password} = req.body;
@@ -85,6 +87,7 @@ app.post("/api/login", async (req,res)=> {
 
         res.status(200).send({message: 'login succesful'});
     } catch (error) {
-        console.log(error);
+        console.log(error)
     }
-})
+});
+
